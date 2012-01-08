@@ -1,0 +1,24 @@
+{
+    "name": "cypresslab/gitelephant-demo-bundle",
+    "type": "symfony-bundle",
+    "description": "GitElephant demo bundle for Symfony2",
+    "keywords": ["git"],
+    "homepage": "http://matteosister.github.com/GitElephant",
+    "version": "0.2",
+    "license": "GPL3",
+    "authors": [
+        {
+            "name": "Matteo Giachino",
+            "email": "matteog@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "cypresslab/gitelephant-bundle": ">=0.2"
+    },
+    "autoload": {
+        "autoload": {
+            "psr-0": { "Cypress\\GitElephantDemoBundle": "" }
+        }
+    }
+}
