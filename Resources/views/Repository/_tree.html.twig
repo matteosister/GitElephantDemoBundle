@@ -20,9 +20,11 @@
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getLog(node, active_branch).sha }) }}">
-                        {{ repository.getLog(node, active_branch).message }}
-                    </a>
+                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">{% spaceless %}
+                        {{ repository.getTreeObjectLog(node, active_branch).last.message }}
+                        &nbsp;
+                        ({{repository.getTreeObjectLog(node, active_branch).last.sha}})
+                    {% endspaceless %}</a>
                 </td>
             {% elseif node.link %}
                 <td class="{{ odd ? 'odd' : 'even' }}" colspan="2">
@@ -36,9 +38,11 @@
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getLog(node, active_branch).sha }) }}">
-                        {{ repository.getLog(node, active_branch).message }}
-                    </a>
+                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">{% spaceless %}
+                        {{ repository.getTreeObjectLog(node, active_branch).last.message }}
+                        &nbsp;
+                        ({{repository.getTreeObjectLog(node, active_branch).last.sha}})
+                    {% endspaceless %}</a>
                 </td>
             {% endif %}
             {% set odd = not odd %}
