@@ -20,11 +20,9 @@
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">{% spaceless %}
-                        {{ repository.getTreeObjectLog(node, active_branch).last.message }}
-                        &nbsp;
-                        ({{repository.getTreeObjectLog(node, active_branch).last.sha}})
-                    {% endspaceless %}</a>
+                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">
+                        {% include "CypressGitElephantDemoBundle:Repository:_commit_label.html.twig" %}
+                    </a>
                 </td>
             {% elseif node.link %}
                 <td class="{{ odd ? 'odd' : 'even' }}" colspan="2">
@@ -38,11 +36,9 @@
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">{% spaceless %}
-                        {{ repository.getTreeObjectLog(node, active_branch).last.message }}
-                        &nbsp;
-                        ({{repository.getTreeObjectLog(node, active_branch).last.sha}})
-                    {% endspaceless %}</a>
+                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">
+                        {% include "CypressGitElephantDemoBundle:Repository:_commit_label.html.twig" %}
+                    </a>
                 </td>
             {% endif %}
             {% set odd = not odd %}
