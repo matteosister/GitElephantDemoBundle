@@ -20,11 +20,10 @@ class RepositoryController extends Controller
     {
         $ref = $this->get('git_repository')->getMainBranch();
         return array(
-            'ref'           => $ref->getName(),
             'repository'    => $this->get('git_repository'),
             'tree'          => $this->get('git_repository')->getTree($ref),
-            'active_branch' => $this->get('git_repository')->getMainBranch(),
-            'active_path'   => ''
+            'reference'     => $ref,
+            'path'   => ''
         );
     }
 
@@ -41,17 +40,23 @@ class RepositoryController extends Controller
     {
         $utils = $this->get('git_repository.utilities');
         $utils->setReference($reference);
-        $branch = $this->get('git_repository')->getBranch($utils->getRef());
-        $tree = $this->get('git_repository')->getTree($branch, $utils->getPath());
-        if ($this->get('git_repository')->getMainBranch() == $branch && $tree->isRoot() && !$tree->isBlob()) {
+        $refName = $utils->getRef();
+
+        $ref = $this->get('git_repository')->getBranchOrTag($refName);
+        if ($ref == null) {
+            throw new \InvalidArgumentException(sprintf("the reference %s is not a reference for the current repository", $reference));
+        }
+        $tree = $this->get('git_repository')->getTree($ref, $utils->getPath());
+        if ($this->get('git_repository')->getMainBranch() == $ref && $tree->isRoot() && !$tree->isBlob()) {
             return $this->redirect($this->generateUrl('repository_root'));
         }
         return array(
-            'ref'           => $branch->getName(),
             'repository'    => $this->get('git_repository'),
-            'tree'          => $this->get('git_repository')->getTree($branch, $utils->getPath()),
-            'active_branch' => $branch,
-            'active_path'          => $utils->getPath()
+            'tree'          => $this->get('git_repository')->getTree($ref, $utils->getPath()),
+            'reference'     => $ref,
+            'path'          => $utils->getPath()
+            //'active_branch' => $branch,
+            //'active_path'   => $utils->getPath()
         );
     }
 }

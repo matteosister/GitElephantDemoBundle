@@ -3,6 +3,7 @@ jQuery ->
   $('ul.dropdown li.label').hide()
   $('ul.dropdown').hover(openSubmenu, closeSubmenu)
   top = 0
+  maxHeight = 300
   maxWidth = 0
   for voice in $('ul.dropdown li:not(.label)')
     if $(voice).width() > maxWidth
@@ -25,6 +26,9 @@ jQuery ->
       $(voice).css('border-bottom', '1px solid #CCC')
       $(voice).hide()
       top += $(voice).outerHeight()
+
+
+
 
   for voice in $('ul.dropdown li:not(.label)')
     $(voice).width(maxWidth)

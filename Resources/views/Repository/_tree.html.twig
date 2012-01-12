@@ -6,21 +6,21 @@
             {% set first_row = true %}
             <tr>
                 <td class="odd" colspan="2">
-                    <a class="icon tree" href="{{ path(subtreeRoute, {'reference': active_branch.name ~ '/' ~ tree.parent }) }}">&hellip;</a>
+                    <a class="icon tree" href="{{ path(subtreeRoute, {'reference': reference.name ~ '/' ~ tree.parent }) }}">&hellip;</a>
                 </td>
             </tr>
         {% endif %}
         {% for node in tree %}
             <tr class="{{ odd ? 'odd' : 'even' }}">
             {% if node.tree %}
-                {% set full_path = active_path ~ (tree.isRoot ? '' : '/') ~ node.name %}
+                {% set full_path = path ~ (tree.isRoot ? '' : '/') ~ node.name %}
                 <td>
-                    <a class="icon tree" href="{{ path(subtreeRoute, {'reference': ref ~ '/' ~ full_path}) }}">
+                    <a class="icon tree" href="{{ path(subtreeRoute, {'reference': reference.name ~ '/' ~ full_path}) }}">
                         {{ node.name }}
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">
+                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, reference).last.sha }) }}">
                         {% include "CypressGitElephantDemoBundle:Repository:_commit_label.html.twig" %}
                     </a>
                 </td>
@@ -29,14 +29,14 @@
                     <a class="icon link" href="#">{{ node.name }} ({{ node.sha }})</a>
                 </td>
             {% else %}
-                {% set full_path = active_path ~ (tree.isRoot ? '' : '/') ~ node.name %}
+                {% set full_path = path ~ (tree.isRoot ? '' : '/') ~ node.name %}
                 <td>
-                    <a class="icon blob" href="{{ path(subtreeRoute, {'reference': ref ~ '/' ~ full_path }) }}">
+                    <a class="icon blob" href="{{ path(subtreeRoute, {'reference': reference.name ~ '/' ~ full_path }) }}">
                         {{ node.name }}
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, active_branch).last.sha }) }}">
+                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, reference).last.sha }) }}">
                         {% include "CypressGitElephantDemoBundle:Repository:_commit_label.html.twig" %}
                     </a>
                 </td>
@@ -46,7 +46,7 @@
             {% if tree.blob %}
                 <td class="content">
                     <pre class="brush: {{ tree.blob.getExtension ? tree.blob.getExtension : 'text' }}">
-                        {%for line in repository.outputContent(tree.blob, active_branch) %}
+                        {%for line in repository.outputContent(tree.blob, reference) %}
                             {{ line }}
                         {% else %}{% spaceless %}
                             empty file
