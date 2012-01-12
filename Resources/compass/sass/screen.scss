@@ -43,8 +43,7 @@ ul.inline {
 }
 
 @mixin fam3($icon) {
-    background: image-url("fam3/" + $icon) no-repeat 0.3em;
-
+    background: image-url("bundles/cypressgitelephantdemo/images/fam3/" + $icon) no-repeat 0.3em;
     padding-left: 2em;
 }
 
@@ -215,6 +214,10 @@ nav {
         height: 1.4em;
         display: block;
         text-wrap: none;
+    }
+    section {
+        @include clearfix;
+        position: relative;
     }
 }
 

@@ -33,4 +33,13 @@ class CommitController extends Controller
             'diff'          => $diff
         );
     }
+
+    /**
+     * @Route("/commits/{ref}", name="repository_commit")
+     * @Template()
+     */
+    public function commitsAction($ref)
+    {
+
+    }
 }

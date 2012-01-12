@@ -6,9 +6,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets filter="compass" output="/css/screen.css"
-        "@CypressGitElephantDemoBundle/Resources/compass/sass/screen.scss"
-        "@CypressGitElephantDemoBundle/Resources/compass/sass/ie.scss" %}
+    {% stylesheets filter="yui_css" output="/css/screen.css"
+        "@CypressGitElephantDemoBundle/Resources/public/css/screen.css" %}
         <link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
