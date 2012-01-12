@@ -1,9 +1,16 @@
+<em>Now browsing</em>
 <ul class="dropdown">
-    <li class="label">{% trans %}Branches{% endtrans %}</li>
     {% for branch in repository.branches %}
         <li>
             <a class="icon branch{{ branch == reference ? ' active' : '' }}"
                 href="{{ path('repository_tree', { 'reference': branch.name }) }}">{{ branch.name }}</a>
+        </li>
+    {% endfor %}
+    {% for tag in repository.tags %}
+        <li>
+            <a
+                class="icon tag{{ tag == reference ? ' active' : '' }}"
+                href="{{ path('repository_tree', { 'reference': tag.name }) }}">{{ tag.name }}</a>
         </li>
     {% endfor %}
 </ul>
