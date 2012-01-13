@@ -3,15 +3,19 @@ jQuery ->
   $('ul.dropdown li.label').hide()
   $('ul.dropdown').hover(openSubmenu, closeSubmenu)
   top = 0
-  maxHeight = 300
+  left = 0
+  rows = 8
+  col = 1
+  actualRow = 1
   maxWidth = 0
-  for voice in $('ul.dropdown li:not(.label)')
-    if $(voice).width() > maxWidth
-      maxWidth = $(voice).width()
+  now = 1
+  voices = $('ul.dropdown li:not(.label)')
+  for voice in voices
+    $(voice).addClass('col-' + col)
     $(voice).css('position', 'absolute')
     $(voice).css('left', '0')
     $(voice).css('background-color', 'white')
-    $(voice).css('padding', '0.5em')
+    $(voice).css('padding', '5px')
     if top == 0
       top = $(voice).outerHeight()
       $('ul.dropdown').css('margin-bottom', (top + 5) + 'px')
@@ -20,18 +24,29 @@ jQuery ->
       $(voice).css('border', '1px solid #CCC')
       $(voice).addClass('active')
     else
-      $(voice).css('top', (top + 2) + 'px')
+      $(voice).css('top', top + 'px')
+      $(voice).css('left', left + 'px')
+      $(voice).css('border-top', '1px solid #CCC')
       $(voice).css('border-left', '1px solid #CCC')
       $(voice).css('border-right', '1px solid #CCC')
-      $(voice).css('border-bottom', '1px solid #CCC')
-      $(voice).hide()
+      if (now == voices.length)
+        $(voice).css('border-bottom', '1px solid #CCC')
       top += $(voice).outerHeight()
-
-
-
-
-  for voice in $('ul.dropdown li:not(.label)')
-    $(voice).width(maxWidth)
+      if $(voice).outerWidth() >= maxWidth
+            maxWidth = $(voice).outerWidth()
+      if actualRow == rows
+        $(voice).css('border-bottom', '1px solid #CCC')
+        actualRow = 1
+        top = 0
+        left += maxWidth + 11
+        for voice in $('ul.dropdown li:not(.label).col-' + col)
+          $(voice).width(maxWidth)
+        col++
+        maxWidth = 0
+      else
+        actualRow++
+      $(voice).hide()
+    now++
 
 
 openSubmenu = ->

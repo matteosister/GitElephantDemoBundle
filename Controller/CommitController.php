@@ -35,7 +35,7 @@ class CommitController extends Controller
     }
 
     /**
-     * @Route("/commits/{ref}", name="repository_commit")
+     * @Route("/commits/{ref}", name="repository_commits")
      * @Template()
      */
     public function commitsAction($ref)
