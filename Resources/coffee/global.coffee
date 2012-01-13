@@ -16,6 +16,7 @@ jQuery ->
     $(voice).css('left', '0')
     $(voice).css('background-color', 'white')
     $(voice).css('padding', '5px')
+    $(voice).css('white-space', 'nowrap')
     if top == 0
       top = $(voice).outerHeight()
       $('ul.dropdown').css('margin-bottom', (top + 5) + 'px')
@@ -34,7 +35,7 @@ jQuery ->
       top += $(voice).outerHeight()
       if $(voice).outerWidth() >= maxWidth
             maxWidth = $(voice).outerWidth()
-      if actualRow == rows
+      if actualRow == rows || now == voices.length
         $(voice).css('border-bottom', '1px solid #CCC')
         actualRow = 1
         top = 0

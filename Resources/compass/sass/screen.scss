@@ -161,7 +161,6 @@ section.content {
             line-height: 1.3em;
             &.indent-1 {
                 padding-left: $indent-pad;
-
             }
             &.indent-2 {
                 padding-left: $indent-pad * 2;
@@ -171,6 +170,21 @@ section.content {
             }
             &.indent-4 {
                 padding-left: $indent-pad * 4;
+            }
+        }
+        pre {
+            background-color: transparent;
+        }
+        td {
+            padding: 0;
+            border-top: none;
+            &.num {
+                padding: 0 1em;
+                border-left: 1px solid #DDD;
+                border-right: 1px solid #DDD;
+                background-color: #CCC;
+                font-weight: bold;
+                color: #999;
             }
         }
     }
@@ -221,12 +235,4 @@ nav {
 
 .label {
     font-weight: bold;
-}
-
-td.code {
-    .container {
-        &:before {
-
-        }
-    }
 }
