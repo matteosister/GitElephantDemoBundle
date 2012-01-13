@@ -1,5 +1,9 @@
 {% extends "CypressGitElephantDemoBundle::base.html.twig" %}
 
+{% block title %}
+    {{ parent() }} ({{ reference.name }})
+{% endblock %}
+
 {% block navigation %}
     {% include "CypressGitElephantDemoBundle:Repository:_references_list.html.twig" %}
 {% endblock %}

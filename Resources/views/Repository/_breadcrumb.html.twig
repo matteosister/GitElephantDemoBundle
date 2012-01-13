@@ -1,16 +1,20 @@
 <ul class="breadcrumb">
     <li class="house">
         <a class="icon house" href="{{ path('repository_tree', {'reference': reference.name }) }}"></a>
+        <span class="divider">/</span>
     </li>
     {% for bc in tree.breadcrumb %}
-        <li{{ loop.last and tree.blob is null ? ' class="last"' : '' }}>
-            <a class="icon tree" href="{{ path('repository_tree', {'reference': reference ~ '/' ~ bc.path }) }}">
+        <li{{ loop.last and tree.blob is null ? ' class="last active"' : '' }}>
+            <a class="icon tree" href="{{ path('repository_tree', {'reference': reference.name ~ '/' ~ bc.path }) }}">
                 {{ bc.label }}
             </a>
+            {% if not loop.last or tree.blob %}
+            <span class="divider">/</span>
+            {% endif %}
         </li>
     {% endfor %}
     {% if tree.blob is not null %}
-        <li class="last">
+        <li class="active">
             <a class="icon blob" href="#">
                 {{ tree.blob }}
             </a>

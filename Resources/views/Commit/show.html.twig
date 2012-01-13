@@ -14,7 +14,7 @@
                         {% for line in chunk %}
                             <tr class="{{ line.type }}">
                                 <td>{{ line.number }}</td>
-                                <td><pre>{{ line }}</pre></td>
+                                <td>{{ line }}</td>
                             </tr>
                         {% endfor %}
                         {% if loop.index < loop.length %}

@@ -1,5 +1,10 @@
 <section class="tree">
-    <table class="tree" width="600">
+    <table class="tree bordered-table zebra-striped" width="600">
+        <thead>
+            <tr>
+                <th>Contents</th>
+            </tr>
+        </thead>
         {% set odd = true %}
         {% if not tree.root and not tree.blob %}
             {% set odd = false %}
@@ -46,11 +51,7 @@
             {% if tree.blob %}
                 <td class="content">
                     <pre class="brush: {{ tree.blob.getExtension ? tree.blob.getExtension : 'text' }}">
-                        {%for line in repository.outputContent(tree.blob, reference) %}
-                            {{ line }}
-                        {% else %}{% spaceless %}
-                            empty file
-                        {% endspaceless %}{% endfor %}
+                        {{- repository.outputContent(tree.blob, reference)|glue_lines -}}
                     </pre>
                 </td>
             {% else %}

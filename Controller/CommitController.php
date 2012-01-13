@@ -29,6 +29,7 @@ class CommitController extends Controller
         $diff = $this->get('git_repository')->getDiff($commit);
         return array(
             'repository'    => $this->get('git_repository'),
+            'tree'          => $this->get('git_repository')->getTree($commit),
             'commit'        => $commit,
             'diff'          => $diff
         );
