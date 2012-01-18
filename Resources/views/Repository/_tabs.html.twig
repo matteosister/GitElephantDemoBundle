@@ -1,6 +1,7 @@
+{% set selected = selected is defined ? selected : null %}
 <ul class="tabs" data-dropdown="dropdown">
-    <li class="active"><a href="#">Code</a></li>
-    <li><a href="#">Commits</a></li>
+    <li{{ selected == 'code' ? ' class="active"' : '' }}><a href="{{ path('repository_root') }}">Code</a></li>
+    <li{{ selected == 'commits' ? ' class="active"' : '' }}><a href="{{ path('repository_commits') }}">Commits</a></li>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle">Tags</a>
         <ul class="dropdown-menu">
