@@ -5,12 +5,12 @@
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
 
-
 body {
     background-color: $bg-color;
     color: $text-color;
     font-size: 62.5%;
     font-family: 'Ubuntu', sans-serif;
+    background-color: #FFF;
 }
 
 section.repository
@@ -19,6 +19,7 @@ section.repository
     width: 80%;
     margin: 10px auto;
     position: relative;
+    background-color: #FFF;
 }
 
 h1 {

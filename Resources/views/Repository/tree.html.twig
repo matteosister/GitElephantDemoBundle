@@ -17,15 +17,16 @@
 {% endif %}
 
 {% block title %}
-    {{ path == '' ? '/' : path }}{{ tree.blob is not null ? '/' ~ tree.blob : '' }} at {{ parent() }} ({{ reference.name }})
-{% endblock %}
-
-{% block navigation %}
-    {% include "CypressGitElephantDemoBundle:Repository:_references_list.html.twig" %}
+    {% if (tree.root) %}
+        {{ parent() }} ({{ reference.name }})
+    {% else %}
+        {{ path == '' ? '/' : path }}{{ tree.blob is not null ? '/' ~ tree.blob : '' }} at {{ parent() }} ({{ reference.name }})
+    {%endif %}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" %}
     {% include "CypressGitElephantDemoBundle:Repository:_breadcrumb.html.twig" %}
     {% include "CypressGitElephantDemoBundle:Repository:_tree.html.twig" with {
         'tree':          tree,

@@ -11,7 +11,7 @@ class RepositoryController extends Controller
 {
     /**
      * @Route("/", name="repository_root")
-     * @Template()
+     * @Template("CypressGitElephantDemoBundle:Repository:tree.html.twig")
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return array
@@ -23,7 +23,7 @@ class RepositoryController extends Controller
             'repository'    => $this->get('git_repository'),
             'tree'          => $this->get('git_repository')->getTree($ref),
             'reference'     => $ref,
-            'path'   => ''
+            'path'          => ''
         );
     }
 
@@ -55,8 +55,6 @@ class RepositoryController extends Controller
             'tree'          => $this->get('git_repository')->getTree($ref, $utils->getPath()),
             'reference'     => $ref,
             'path'          => $utils->getPath()
-            //'active_branch' => $branch,
-            //'active_path'   => $utils->getPath()
         );
     }
 }

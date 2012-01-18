@@ -18,22 +18,16 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/cypressgitelephantdemo/js/jquery-1.7.min.js') }}"></script>
-    {% javascripts filter="coffee" output="/js/scripts.js"
-         "@CypressGitElephantDemoBundle/Resources/coffee/global.coffee" %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/cypressgitelephantdemo/js/bootstrap/bootstrap-dropdown.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('ul.tabs').dropdown();
+        })
+    </script>
 {% endblock %}
 
 {% block body %}
     <section class="repository">
-        <h1><a href="{{ path('repository_root') }}">Git Repository</a></h1>
-        <nav>
-            {% block navigation %}{% endblock %}
-        </nav>
-        {% block content %}
-            <section class="commit">
-                <a href="{{ path('repository_commit', { 'ref': reference.sha }) }}">{{ reference.sha }}</a>
-            </section>
-        {% endblock %}
+        {% block content %}{% endblock %}
     </section>
 {% endblock %}

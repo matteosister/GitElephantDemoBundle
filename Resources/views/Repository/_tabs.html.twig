@@ -1,0 +1,25 @@
+<ul class="tabs" data-dropdown="dropdown">
+    <li class="active"><a href="#">Code</a></li>
+    <li><a href="#">Commits</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Tags</a>
+        <ul class="dropdown-menu">
+        {% for tag in repository.tags %}
+            <li>
+                <a class="{{ tag == reference ? ' active' : '' }}"
+                    href="{{ path('repository_tree', { 'reference': tag.name }) }}">{{ tag.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Branches</a>
+        <ul class="dropdown-menu">
+        {% for branch in repository.branches %}
+            <li>
+                <a href="{{ path('repository_tree', { 'reference': branch.name }) }}">{{ branch.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </li>
+</ul>
