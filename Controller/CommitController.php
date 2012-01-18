@@ -32,7 +32,8 @@ class CommitController extends Controller
             'repository'    => $this->get('git_repository'),
             'tree'          => $this->get('git_repository')->getTree($commit),
             'commit'        => $commit,
-            'diff'          => $diff
+            'diff'          => $diff,
+            'reference'     => null
         );
     }
 
@@ -46,7 +47,7 @@ class CommitController extends Controller
         return array(
             'repository'    => $repository,
             'reference'     => null,
-            'logs'          => $repository->getLog()
+            'logs'          => $repository->getLog('HEAD', null, 8, 0)
         );
     }
 }

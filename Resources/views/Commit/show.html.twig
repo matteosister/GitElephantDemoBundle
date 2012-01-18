@@ -1,0 +1,32 @@
+{% extends "CypressGitElephantDemoBundle::base.html.twig" %}
+
+{% block content %}
+    {{ parent() }}
+    {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" %}
+    <div class="actions">
+        <h2>{{ commit.message }}</h2>
+        <span class="label">{{ commit }}</span>
+    </div>
+    <section class="content">
+        {% for diff_object in diff %}
+            <table class="diff{{ loop.last ? ' last' : '' }} {{ diff_object.mode }}">
+                <thead>
+                    <tr>
+                        <th colspan="3">{{ diff_object }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for chunk in diff_object %}
+                        {% for line in chunk %}
+                            <tr class="{{ line.type }}">
+                                <td width="1%" class="num">{{ line.type == 'unchanged' or line.type == 'deleted' ? line.number : '' }}</td>
+                                <td width="1%" class="num">{{ line.type == 'unchanged' or line.type == 'added' ? line.number : '' }}</td>
+                                <td><pre>{{ line }}</pre></td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </section>
+{% endblock %}

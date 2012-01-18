@@ -5,7 +5,7 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle">Tags</a>
         <ul class="dropdown-menu">
-        {% for tag in repository.tags %}
+        {% for tag in repository.tags|reverse %}
             <li>
                 <a class="{{ tag == reference ? ' active' : '' }}"
                     href="{{ path('repository_tree', { 'reference': tag.name }) }}">{{ tag.name }}</a>
