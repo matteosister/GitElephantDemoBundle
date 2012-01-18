@@ -1,5 +1,5 @@
 <section class="tree">
-    <table class="tree bordered-table zebra-striped" width="600">
+    <table class="tree bordered-table zebra-striped">
         <thead>
             <tr>
                 <th>Browsing <span class="label">{{ reference.name }}</span></th>
@@ -25,7 +25,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, reference).last.sha }) }}">
+                    <a class="commit" href="{{ path('repository_commit', { 'sha': repository.getTreeObjectLog(node, reference).last.sha }) }}">
                         {% include "CypressGitElephantDemoBundle:Repository:_commit_label.html.twig" %}
                     </a>
                 </td>
@@ -41,7 +41,7 @@
                     </a>
                 </td>
                 <td>
-                    <a class="commit" href="{{ path('repository_commit', { 'ref': repository.getTreeObjectLog(node, reference).last.sha }) }}">
+                    <a class="commit" href="{{ path('repository_commit', { 'sha': repository.getTreeObjectLog(node, reference).last.sha }) }}">
                         {% include "CypressGitElephantDemoBundle:Repository:_commit_label.html.twig" %}
                     </a>
                 </td>

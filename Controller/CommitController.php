@@ -18,29 +18,36 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class CommitController extends Controller
 {
     /**
-     * @Route("/commit/{ref}", name="repository_commit")
+     * @Route("/commit/{sha}", name="repository_commit")
      * @Template()
      *
      * @param $ref The treeish reference
      */
-    public function showAction($ref)
+    public function showAction($sha)
     {
-        $commit = $this->get('git_repository')->getCommit($ref);
-        $diff = $this->get('git_repository')->getDiff($commit);
+        $repository = $this->get('git_repository');
+        $commit = $repository->getCommit($sha);
+        $diff = $repository->getDiff($commit);
         return array(
             'repository'    => $this->get('git_repository'),
             'tree'          => $this->get('git_repository')->getTree($commit),
             'commit'        => $commit,
-            'diff'          => $diff
+            'diff'          => $diff,
+            'reference'     => null
         );
     }
 
     /**
-     * @Route("/commits/{ref}", name="repository_commits")
+     * @Route("/commits", name="repository_commits")
      * @Template()
      */
-    public function commitsAction($ref)
+    public function listAction()
     {
-
+        $repository = $this->get('git_repository');
+        return array(
+            'repository'    => $repository,
+            'reference'     => null,
+            'logs'          => $repository->getLog('HEAD', null, 8, 0)
+        );
     }
 }
