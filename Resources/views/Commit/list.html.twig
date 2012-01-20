@@ -9,7 +9,7 @@
         <tr>
             <td>
                 <h2>
-                    <a href="{{ path('repository_commit', { 'sha': commit }) }}">{{ commit.message }}</a>
+                    <a href="{{ path('repository_commit', { 'sha': commit, 'repository_name': repository_name }) }}">{{ commit.message }}</a>
                 </h2>
                 <span class="label">{{ commit }}</span>
             </td>
