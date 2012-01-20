@@ -27,7 +27,7 @@
 {% block content %}
     {{ parent() }}
     {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" with {"selected": 'code'} %}
-    <h2>Repository {{ repository.name }}</h2>
+    <h2>Repository <a href="{{ path('repository_root', { 'repository_name': repository.name }) }}">{{ repository.name }}</a></h2>
     {% include "CypressGitElephantDemoBundle:Repository:_breadcrumb.html.twig" %}
     {% include "CypressGitElephantDemoBundle:Repository:_tree.html.twig" with {
         'tree':          tree,

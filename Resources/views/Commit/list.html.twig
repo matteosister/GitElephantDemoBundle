@@ -3,7 +3,7 @@
 {% block content %}
     {{ parent() }}
     {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" with {'selected': 'commits'} %}
-
+    <h2>Repository <a href="{{ path('repository_root', { 'repository_name': repository.name }) }}">{{ repository.name }}</a></h2>
     <table class="tree bordered-table zebra-striped">
         {% for commit in logs %}
         <tr>
