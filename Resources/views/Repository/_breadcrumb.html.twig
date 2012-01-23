@@ -1,11 +1,11 @@
 <ul class="breadcrumb">
     <li class="house">
-        <a class="icon house" href="{{ path('repository_tree', {'reference': reference.name }) }}"></a>
+        <a class="icon house" href="{{ path('repository_tree', {'reference': reference.name, 'repository_name': repository_name }) }}"></a>
         <span class="divider">/</span>
     </li>
     {% for bc in tree.breadcrumb %}
         <li{{ loop.last and tree.blob is null ? ' class="last active"' : '' }}>
-            <a class="icon tree" href="{{ path('repository_tree', {'reference': reference.name ~ '/' ~ bc.path }) }}">
+            <a class="icon tree" href="{{ path('repository_tree', {'reference': reference.name ~ '/' ~ bc.path, 'repository_name': repository_name }) }}">
                 {{ bc.label }}
             </a>
             {% if not loop.last or tree.blob %}

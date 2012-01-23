@@ -18,36 +18,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class CommitController extends Controller
 {
     /**
-     * @Route("/commit/{sha}", name="repository_commit")
+     * @Route("/{repository_name}/commit/{sha}", name="repository_commit")
      * @Template()
      *
      * @param $ref The treeish reference
      */
-    public function showAction($sha)
+    public function showAction($repository_name, $sha)
     {
-        $repository = $this->get('git_repository');
+        $repository = $this->get('git_repositories')->get($repository_name);
         $commit = $repository->getCommit($sha);
         $diff = $repository->getDiff($commit);
         return array(
-            'repository'    => $this->get('git_repository'),
-            'tree'          => $this->get('git_repository')->getTree($commit),
-            'commit'        => $commit,
-            'diff'          => $diff,
-            'reference'     => null
+            'repositories'    => $this->get('git_repositories'),
+            'repository_name' => $repository_name,
+            //'repository'      => $repository,
+            'tree'            => $repository->getTree($commit),
+            'commit'          => $commit,
+            'diff'            => $diff,
+            'reference'       => null
         );
     }
 
     /**
-     * @Route("/commits", name="repository_commits")
+     * @Route("/{repository_name}/commits", name="repository_commits")
      * @Template()
      */
-    public function listAction()
+    public function listAction($repository_name)
     {
-        $repository = $this->get('git_repository');
+        $repository = $this->get('git_repositories')->get($repository_name);
         return array(
-            'repository'    => $repository,
-            'reference'     => null,
-            'logs'          => $repository->getLog('HEAD', null, 8, 0)
+            'repositories'    => $this->get('git_repositories'),
+            'repository_name' => $repository_name,
+            //'repository'      => $repository,
+            'reference'       => null,
+            'logs'            => $repository->getLog('HEAD', null, 8, 0)
         );
     }
 }

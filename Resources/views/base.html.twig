@@ -28,6 +28,9 @@
 
 {% block body %}
     <section class="repository">
+        {% if repository_name is defined %}
+            {% set repository = repositories.get(repository_name) %}
+        {% endif %}
         {% block content %}{% endblock %}
     </section>
 {% endblock %}
