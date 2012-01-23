@@ -3,7 +3,7 @@
     <li{{ selected == 'code' ? ' class="active"' : '' }}><a href="{{ path('repository_root') }}">Code</a></li>
     <li{{ selected == 'commits' ? ' class="active"' : '' }}><a href="{{ path('repository_commits') }}">Commits</a></li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Tags</a>
+        <a href="#" class="dropdown-toggle">Tags <span class="label">{{ repository.tags|length }}</span></a>
         <ul class="dropdown-menu">
         {% for tag in repository.tags|reverse %}
             <li>
@@ -14,7 +14,7 @@
         </ul>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Branches</a>
+        <a href="#" class="dropdown-toggle">Branches <span class="label">{{ repository.branches|length }}</span></a>
         <ul class="dropdown-menu">
         {% for branch in repository.branches %}
             <li>
