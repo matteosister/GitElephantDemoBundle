@@ -1,0 +1,14 @@
+{% if pagerfanta.haveToPaginate %}
+{% set page = app.request.get('page', 1) %}
+<div class="pagination">
+    <ul>
+        <li class="prev {{ pagerfanta.hasPreviousPage ? '' : 'disabled' }}"><a href="?page={{ page - 1 }}">&larr; Previous</a></li>
+        {% if page - 2 > 0 %}<li><a href="?page={{ page - 2 }}">{{ page - 2 }}</a></li>{% endif %}
+        {% if page - 1 > 0 %}<li><a href="?page={{ page - 1 }}">{{ page - 1 }}</a></li>{% endif %}
+        <li class="active"><a href="#">{{ page }}</a></li>
+        {% if page + 1 > 0 %}<li><a href="?page={{ page + 1 }}">{{ page + 1 }}</a></li>{% endif %}
+        {% if page + 2 > 0 %}<li><a href="?page={{ page + 2 }}">{{ page + 2 }}</a></li>{% endif %}
+        <li class="next {{ pagerfanta.hasNextPage ? '' : 'disabled' }}"><a href="?page={{ page + 1 }}">Next &rarr;</a></li>
+    </ul>
+</div>
+{% endif %}
