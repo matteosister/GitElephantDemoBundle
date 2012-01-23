@@ -187,6 +187,9 @@ section.content {
                 font-weight: bold;
                 color: #999;
             }
+            &.code {
+                padding-left: 1em;
+            }
         }
     }
 }
