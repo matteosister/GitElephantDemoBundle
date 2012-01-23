@@ -4,7 +4,7 @@
     {{ parent() }}
     {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" %}
     <h2>Repository <a href="{{ path('repository_root', { 'repository_name': repository.name }) }}">{{ repository.name }}</a></h2>
-    <div class="actions">
+    <div class="well">
         <h2>{{ commit.message }}</h2>
         <span class="label">{{ commit }}</span>
     </div>
