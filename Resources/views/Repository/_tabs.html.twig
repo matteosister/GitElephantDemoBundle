@@ -1,14 +1,24 @@
 {% set selected = selected is defined ? selected : null %}
 <ul class="tabs" data-dropdown="dropdown">
-    <li{{ selected == 'code' ? ' class="active"' : '' }}><a href="{{ path('repository_root') }}">Code</a></li>
-    <li{{ selected == 'commits' ? ' class="active"' : '' }}><a href="{{ path('repository_commits') }}">Commits</a></li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" href="{{ path('repositories') }}">Repositories</a>
+        <ul class="dropdown-menu">
+            {% for repository in repositories %}
+            <li>
+                <a href="{{ path('repository_root', { 'repository_name': repository.name }) }}">{{ repository.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li{{ selected == 'code' ? ' class="active"' : '' }}><a href="{{ path('repository_root', {'repository_name': repository_name}) }}">Code</a></li>
+    <li{{ selected == 'commits' ? ' class="active"' : '' }}><a href="{{ path('repository_commits', {'repository_name': repository_name}) }}">Commits</a></li>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle">Tags <span class="label">{{ repository.tags|length }}</span></a>
         <ul class="dropdown-menu">
         {% for tag in repository.tags|reverse %}
             <li>
                 <a class="{{ tag == reference ? ' active' : '' }}"
-                    href="{{ path('repository_tree', { 'reference': tag.name }) }}">{{ tag.name }}</a>
+                    href="{{ path('repository_tree', { 'reference': tag.name, 'repository_name': repository_name }) }}">{{ tag.name }}</a>
             </li>
         {% endfor %}
         </ul>
@@ -18,7 +28,7 @@
         <ul class="dropdown-menu">
         {% for branch in repository.branches %}
             <li>
-                <a href="{{ path('repository_tree', { 'reference': branch.name }) }}">{{ branch.name }}</a>
+                <a href="{{ path('repository_tree', { 'reference': branch.name, 'repository_name': repository_name }) }}">{{ branch.name }}</a>
             </li>
         {% endfor %}
         </ul>

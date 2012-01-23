@@ -1,0 +1,13 @@
+{% extends "CypressGitElephantDemoBundle::base.html.twig" %}
+
+{% block title %}
+    Repositories
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for repository in repositories %}
+        <li><h1><a href="{{ path('repository_root', {'repository_name': repository.name}) }}">{{ repository.name }}</a></h1></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
