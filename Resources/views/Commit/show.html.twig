@@ -20,8 +20,8 @@
                     {% for chunk in diff_object %}
                         {% for line in chunk %}
                             <tr class="{{ line.type }}">
-                                <td width="1%" class="num">{{ line.type == 'unchanged' or line.type == 'deleted' ? line.number : '' }}</td>
-                                <td width="1%" class="num">{{ line.type == 'unchanged' or line.type == 'added' ? line.number : '' }}</td>
+                                <td width="1%" class="num">{{ line.type == 'unchanged' or line.type == 'deleted' ? line.originNumber : '' }}</td>
+                                <td width="1%" class="num">{{ line.type == 'unchanged' or line.type == 'added' ? line.destNumber : '' }}</td>
                                 <td class="code"><pre>{{ line }}</pre></td>
                             </tr>
                         {% endfor %}
