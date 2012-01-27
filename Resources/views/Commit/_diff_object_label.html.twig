@@ -1,0 +1,15 @@
+<h2>
+{{ diff_object }}
+{% if diff_object.mode == 'new_file' %}
+    <small>{% trans %}New File{% endtrans %}</small>
+{% endif %}
+{% if diff_object.mode == 'deleted_file' %}
+    <small>{% trans %}Deleted File{% endtrans %}</small>
+{% endif %}
+{% if diff_object.mode == 'index' %}
+    <small>{% trans %}Index{% endtrans %}</small>
+{% endif %}
+{% if diff_object.mode == 'mode' %}
+    <small>{% trans %}Mode{% endtrans %}</small>
+{% endif %}
+</h2>

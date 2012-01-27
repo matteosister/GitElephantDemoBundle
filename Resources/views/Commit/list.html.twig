@@ -5,7 +5,7 @@
     {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" with {'selected': 'commits'} %}
     <h2>Repository <a href="{{ path('repository_root', { 'repository_name': repository.name }) }}">{{ repository.name }}</a></h2>
     <table class="tree bordered-table zebra-striped">
-        {% for commit in logs %}
+        {% for commit in pagerfanta.getCurrentPageResults %}
         <tr>
             <td>
                 <h2>
@@ -16,15 +16,5 @@
         </tr>
         {% endfor %}
     </table>
-    <div class="pagination">
-        <ul>
-            <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li class="next"><a href="#">Next &rarr;</a></li>
-        </ul>
-    </div>
+    {% include "CypressGitElephantDemoBundle:Commit:_pagination.html.twig" %}
 {% endblock %}
