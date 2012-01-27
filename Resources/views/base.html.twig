@@ -7,12 +7,15 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/cypressgitelephantdemo/css/bootstrap.min.css') }}">
-    {% stylesheets filter="compass, ?yui_css" output="/css/screen.css"
-        "@CypressGitElephantDemoBundle/Resources/compass/sass/screen.scss" %}
+    {#{% stylesheets filter="compass, ?yui_css" output="/css/screen.css"#}
+        {#"@CypressGitElephantDemoBundle/Resources/compass/sass/screen.scss" %}#}
+        {#<link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset_url }}" />#}
+    {#{% endstylesheets %}#}
+    {% stylesheets filter="?yui_css" output="/css/screen.css"
+        "@CypressGitElephantDemoBundle/Resources/public/css/screen.css"
+        "@CypressGitElephantDemoBundle/Resources/public/css/bootstrap.min.css" %}
         <link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset_url }}" />
     {% endstylesheets %}
-    <link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset('bundles/cypressgitelephantdemo/js/syntaxhighlighter/styles/shCore.css') }}" />
-    <link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset('bundles/cypressgitelephantdemo/js/syntaxhighlighter/styles/shThemeDefault.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
