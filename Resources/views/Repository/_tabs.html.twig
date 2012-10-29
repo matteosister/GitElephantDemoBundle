@@ -1,7 +1,7 @@
 {% set selected = selected is defined ? selected : null %}
-<ul class="tabs" data-dropdown="dropdown">
+<ul class="nav nav-tabs" data-dropdown="dropdown">
     <li class="dropdown">
-        <a class="dropdown-toggle" href="{{ path('repositories') }}">Repositories <span class="label">{{ repositories|length }}</span></a>
+        <a class="dropdown-toggle" href="{{ path('repositories') }}">Repositories <span class="label label-info">{{ repositories|length }}</span></a>
         <ul class="dropdown-menu">
             {% for repository in repositories %}
             <li>
@@ -13,7 +13,7 @@
     <li{{ selected == 'code' ? ' class="active"' : '' }}><a href="{{ path('repository_root', {'repository_name': repository_name}) }}">Code</a></li>
     <li{{ selected == 'commits' ? ' class="active"' : '' }}><a href="{{ path('repository_commits', {'repository_name': repository_name}) }}">Commits</a></li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Tags <span class="label">{{ repository.tags|length }}</span></a>
+        <a href="#" class="dropdown-toggle">Tags <span class="label label-info">{{ repository.tags|length }}</span></a>
         <ul class="dropdown-menu">
         {% for tag in repository.tags|reverse %}
             <li>
@@ -24,7 +24,7 @@
         </ul>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Branches <span class="label">{{ repository.branches|length }}</span></a>
+        <a href="#" class="dropdown-toggle">Branches <span class="label label-info">{{ repository.branches|length }}</span></a>
         <ul class="dropdown-menu">
         {% for branch in repository.branches %}
             <li>

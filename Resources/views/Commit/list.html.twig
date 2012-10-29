@@ -4,14 +4,14 @@
     {{ parent() }}
     {% include "CypressGitElephantDemoBundle:Repository:_tabs.html.twig" with {'selected': 'commits'} %}
     <h2>Repository <a href="{{ path('repository_root', { 'repository_name': repository.name }) }}">{{ repository.name }}</a></h2>
-    <table class="tree bordered-table zebra-striped">
+    <table class="tree table table-bordered table-striped">
         {% for commit in pagerfanta.getCurrentPageResults %}
         <tr>
             <td>
                 <h2>
                     <a href="{{ path('repository_commit', { 'sha': commit, 'repository_name': repository_name }) }}">{{ commit.message }}</a>
                 </h2>
-                <span class="label">{{ commit }}</span>
+                <span class="label label-info">{{ commit }}</span>
             </td>
         </tr>
         {% endfor %}

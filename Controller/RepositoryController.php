@@ -37,7 +37,7 @@ class RepositoryController extends Controller
         return array(
             'repositories'    => $this->get('git_repositories'),
             'repository_name' => $repository_name,
-            //'repository'      => $repository,
+            'repository'      => $repository,
             'tree'            => $repository->getTree($ref),
             'reference'       => $ref,
             'path'            => ''
@@ -72,7 +72,7 @@ class RepositoryController extends Controller
         return array(
             'repositories'    => $this->get('git_repositories'),
             'repository_name' => $repository_name,
-            //'repository'      => $repository,
+            'repository'      => $repository,
             'tree'            => $repository->getTree($ref, $utils->getPath()),
             'reference'       => $ref,
             'path'            => $utils->getPath()
