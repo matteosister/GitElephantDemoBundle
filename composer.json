@@ -17,8 +17,6 @@
         "cypresslab/gitelephant-bundle": ">=0.2"
     },
     "autoload": {
-        "autoload": {
-            "psr-0": { "Cypress\\GitElephantDemoBundle": "" }
-        }
+        "psr-0": { "Cypress\\GitElephantDemoBundle": "" }
     }
 }
