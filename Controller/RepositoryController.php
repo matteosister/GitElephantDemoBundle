@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RepositoryController extends Controller
 {
@@ -25,23 +26,29 @@ class RepositoryController extends Controller
 
     /**
      * @Route("/{repository_name}", name="repository_root")
-     * @Template("CypressGitElephantDemoBundle:Repository:tree.html.twig")
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return array
      */
     public function repositoryAction(Request $request, $repository_name)
     {
+        $response = new Response();
+        $response->setPublic();
+        $response->setMaxAge(600);
+        $response->setSharedMaxAge(600);
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
         $repository = $this->get('git_repositories')->get($repository_name);
         $ref = $repository->getMainBranch();
-        return array(
+        return $this->render('CypressGitElephantDemoBundle:Repository:tree.html.twig', array(
             'repositories'    => $this->get('git_repositories'),
             'repository_name' => $repository_name,
             'repository'      => $repository,
             'tree'            => $repository->getTree($ref),
             'reference'       => $ref,
             'path'            => ''
-        );
+        ), $response);
     }
 
     /**
@@ -55,6 +62,13 @@ class RepositoryController extends Controller
      */
     public function treeAction(Request $request, $repository_name, $reference)
     {
+        $response = new Response();
+        $response->setPublic();
+        $response->setMaxAge(600);
+        $response->setSharedMaxAge(600);
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
         $utils = $this->get('git_repository.utilities');
         $repository = $this->get('git_repositories')->get($repository_name);
         $utils->setRepository($repository);
@@ -69,13 +83,13 @@ class RepositoryController extends Controller
         if ($repository->getMainBranch() == $ref && $tree->isRoot() && !$tree->isBlob()) {
             return $this->redirect($this->generateUrl('repository_root', array('repository_name' => $repository_name)));
         }
-        return array(
+        return $this->render('CypressGitElephantDemoBundle:Repository:tree.html.twig', array(
             'repositories'    => $this->get('git_repositories'),
             'repository_name' => $repository_name,
             'repository'      => $repository,
             'tree'            => $repository->getTree($ref, $utils->getPath()),
             'reference'       => $ref,
             'path'            => $utils->getPath()
-        );
+        ), $response);
     }
 }
