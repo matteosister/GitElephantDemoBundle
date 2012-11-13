@@ -18,5 +18,6 @@
     },
     "autoload": {
         "psr-0": { "Cypress\\GitElephantDemoBundle": "" }
-    }
+    },
+    "target-dir": "Cypress/GitElephantDemoBundle"
 }
