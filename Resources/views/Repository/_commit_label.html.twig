@@ -1,5 +1,5 @@
 {% spaceless %}
-    {{ repository.getTreeObjectLog(node, reference).last.message }}
+    {{ treeObjectLog.last.message }}
     &nbsp;
-    ({{repository.getTreeObjectLog(node, reference).last.sha}})
+    ({{ treeObjectLog.last.sha}})
 {% endspaceless %}

@@ -12,7 +12,8 @@
     </li>
     <li{{ selected == 'code' ? ' class="active"' : '' }}><a href="{{ path('repository_root', {'repository_name': repository_name}) }}">Code</a></li>
     <li{{ selected == 'commits' ? ' class="active"' : '' }}><a href="{{ path('repository_commits', {'repository_name': repository_name}) }}">Commits</a></li>
-    <li class="dropdown">
+    {#<li{{ selected == 'tags' ? ' class="active"' : '' }}><a href="{{ path('repository_tags', {'repository_name': repository_name}) }}">Tags</a></li>#}
+    {#<li class="dropdown">
         <a href="#" class="dropdown-toggle">Tags <span class="label label-info">{{ repository.tags|length }}</span></a>
         <ul class="dropdown-menu">
         {% for tag in repository.tags|reverse %}
@@ -22,7 +23,7 @@
             </li>
         {% endfor %}
         </ul>
-    </li>
+    </li>#}
     <li class="dropdown">
         <a href="#" class="dropdown-toggle">Branches <span class="label label-info">{{ repository.branches|length }}</span></a>
         <ul class="dropdown-menu">
