@@ -3,7 +3,9 @@
         <thead>
             <tr>
                 <th colspan="2">
-                    Browsing <span class="label label-inverse">{{ reference.name }}</span> <span class="label label-info">{{ repository.countCommits(reference.name) }} commits</span>
+                    Browsing <span class="label label-inverse">{{ reference.name }}</span>
+                    {% set commitsNum = repository.countCommits(reference.name) %}
+                    <span class="label label-info">{{ commitsNum >= 1000 ? '> 1000' : commitsNum }} commits</span>
                 </th>
             </tr>
         </thead>
