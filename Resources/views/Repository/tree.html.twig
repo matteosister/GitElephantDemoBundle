@@ -1,5 +1,7 @@
 {% extends "CypressGitElephantDemoBundle::base.html.twig" %}
 
+{% set tree = repository.tree(reference, path) %}
+
 {% if tree.blob %}
     {% block javascripts %}
         {{ parent() }}

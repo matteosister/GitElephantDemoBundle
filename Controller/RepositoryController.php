@@ -67,7 +67,7 @@ class RepositoryController extends Controller
         $response->setMaxAge(600);
         $response->setSharedMaxAge(600);
         if ($response->isNotModified($request)) {
-            return $response;
+            //return $response;
         }
         $utils = $this->get('git_repository.utilities');
         $repository = $this->get('git_repositories')->get($repository_name);
@@ -87,7 +87,7 @@ class RepositoryController extends Controller
             'repositories'    => $this->get('git_repositories'),
             'repository_name' => $repository_name,
             'repository'      => $repository,
-            'tree'            => $repository->getTree($ref, $utils->getPath()),
+            //'tree'            => $repository->getTree($ref, $utils->getPath()),
             'reference'       => $ref,
             'path'            => $utils->getPath()
         ), $response);
