@@ -7,11 +7,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/cypressgitelephantdemo/css/bootstrap.min.css') }}">
-    {#{% stylesheets filter="compass, ?yui_css" output="/css/screen.css"#}
-        {#"@CypressGitElephantDemoBundle/Resources/compass/sass/screen.scss" %}#}
-        {#<link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset_url }}" />#}
-    {#{% endstylesheets %}#}
-    {% stylesheets filter="?yui_css" output="/css/screen.css"
+    {% stylesheets filter="?uglifycss" output="/css/screen.css"
         "@CypressGitElephantDemoBundle/Resources/public/css/bootstrap.min.css"
         "@CypressGitElephantDemoBundle/Resources/public/css/screen.css" %}
         <link rel="stylesheet" media="screen, projection" type="text/css" href="{{ asset_url }}" />
